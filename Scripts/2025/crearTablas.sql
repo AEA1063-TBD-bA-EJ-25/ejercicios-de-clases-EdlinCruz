@@ -1,54 +1,58 @@
+
+
 create database escuelita;
 
 go
 
 use escuelita
-create TABLE Persona(
+create TABLE Personaa(
     CURP CHAR(18) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
     Direccion NVARCHAR (100),
     Nacimiento DATE NOT NULL,
 )
 
-CREATE TABLE Carrera(
+CREATE TABLE Carreraa(
     Clave CHAR(13) NOT NULL PRIMARY KEY,
     Nombre VARCHAR(60) NOT NULL
 
 )
 
-CREATE TABLE Alumno (
-    CURP CHAR(18) NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Persona(CURP),
+CREATE TABLE Alumnoo (
+    CURP CHAR(18) NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Personaa(CURP),
     NumeroDeControl CHAR (8) NOT NULL UNIQUE,
-    ClaveCarrera CHAR(13) FOREIGN KEY REFERENCES Carrera(Clave)
+    ClaveCarrera CHAR(13) FOREIGN KEY REFERENCES Carreraa(Clave)
 )
-select * from persona;
+select * from Personaa;
 
-CREATE TABLE Docente (
+CREATE TABLE Docentee (
     CURP CHAR (18) NOT NULL PRIMARY KEY,
     RFC CHAR(13) NOT NULL UNIQUE,
     Profesion NVARCHAR(30) NULL,
-    FOREIGN KEY (CURP) REFERENCES Persona(CURP)
+    FOREIGN KEY (CURP) REFERENCES Personaa(CURP)
 )
 
-    CREATE TABLE Administrativo(
+    CREATE TABLE Administrativoo(
         CURP CHAR (18) NOT NULL
         PRIMARY KEY 
-        FOREIGN KEY REFERENCES Persona(CURP)
+        FOREIGN KEY REFERENCES Personaa(CURP)
     )
 
-INSERT INTO Carrera (Clave, Nombre )
-VALUES ('ITIC-2010-225', 'TICs')
+    INSERT INTO Carrera (Clave, Nombre )
+        VALUES ('ITIC-2010-225', 'TICs')
 
-select * from Carrera
-INSERT INTO Carrera (Clave, Nombre)
-VALUES('ISIC-2010-224', 'Ingenieria en Sistemas Computacionales'),
-    ('IMTC-2010-224','Ingenieria en mecatranica' )
+select * from Carreraa
 
-    INSERT INTO Persona (CURP, Nombre, Direccion, Nacimiento)
+    INSERT INTO Carrera (Clave, Nombre)
+        VALUES('ISIC-2010-224', 'Ingenieria en Sistemas Computacionales'),
+            ('IMTC-2010-224','Ingenieria en mecatranica' )
+
+    INSERT INTO Personaa (CURP, Nombre, Direccion, Nacimiento)
         VALUES('JS20FR', 'Jphane Sacrebleu', 'Por alla', '2033-04-05')
 
-    INSERT INTO Alumnno(CURP, NumeroDeControl, CarreraClave)
+    INSERT INTO Alumnoo(CURP, NumeroDeControl, ClaveCarrera)
         VALUES('JS20FR', '20170005', 'ITIC-2010-225')
 
-        select NumeroDeControl, Nombre, CarreraClave from Persona
-        join Alumno on Persona.CURP = Alumno.CURP
+    /*select * from Alumno*/
+        select NumeroDeControl, Nombre, ClaveCarrera from Personaa
+        join Alumno on Personaa.CURP = Alumno.CURP
