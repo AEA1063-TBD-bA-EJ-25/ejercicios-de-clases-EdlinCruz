@@ -106,3 +106,12 @@ select * from Carreraa
 
         alter table empleado
             add nacimiento date not null check(date <getDate())
+
+
+            select * from Persona
+
+            select SYSDATETIME()
+            select SYSDATETIMEOFFSET()
+            SELECT SYSUTCDATETIME()
+
+            SELECT (DATENAME(MONTH, nacimiento)) from Persona
