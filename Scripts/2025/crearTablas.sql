@@ -115,3 +115,8 @@ select * from Carreraa
             SELECT SYSUTCDATETIME()
 
             SELECT (DATENAME(MONTH, nacimiento)) from Persona
+
+            select datediff(day, getDate(), nacimiento ) from Persona
+            select datediff(year, nacimiento, getDate() )as Edad from Persona
+
+            select dateadd(HOUR, 2, GETDATE())
