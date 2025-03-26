@@ -168,9 +168,11 @@ FROM [Order Details] od
 JOIN Orders o ON od.OrderID = o.OrderID
 JOIN Products p ON od.ProductID = p.ProductID
 JOIN Categories c ON p.CategoryID = c.CategoryID
+join Customers s on s.CompanyName = s.CompanyName
 WHERE YEAR(OrderDate) = 1997
-GROUP BY datepart( month, o.OrderDate ), datename( month, o.OrderDate ), c.CategoryName
-ORDER BY datepart( month, o.OrderDate ), TotalSales DESC;
+GROUP BY s.CompanyName, datepart( month, o.OrderDate ), datename( month, o.OrderDate ), c.CategoryName
+ORDER BY c.CategoryName, datepart( month, o.OrderDate ), TotalSales DESC;
 
 --USALA PARA CONSULTAR EL NOMBRE DE LAS TABLASS
 SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES;
+select * from Customers
