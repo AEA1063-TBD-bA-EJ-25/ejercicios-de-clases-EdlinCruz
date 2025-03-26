@@ -162,15 +162,15 @@ join orders o on o.OrderID = od.OrderID
 WHERE c.CategoryName = 'Beverages'
 and year(OrderDate ) = 1997
 
---Tarea: Cuánto se vendió en 1997 por cada categoría
-SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalSales
+--Tarea: Cuánto se vendió en 1997 por cada categoría, y por el mes de ese anio
+SELECT datename( month, o.OrderDate ), c.CategoryName, SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalSales
 FROM [Order Details] od
 JOIN Orders o ON od.OrderID = o.OrderID
 JOIN Products p ON od.ProductID = p.ProductID
 JOIN Categories c ON p.CategoryID = c.CategoryID
 WHERE YEAR(OrderDate) = 1997
-GROUP BY c.CategoryName
-ORDER BY TotalSales DESC;
+GROUP BY datepart( month, o.OrderDate ), datename( month, o.OrderDate ), c.CategoryName
+ORDER BY datepart( month, o.OrderDate ), TotalSales DESC;
 
 --USALA PARA CONSULTAR EL NOMBRE DE LAS TABLASS
 SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES;
