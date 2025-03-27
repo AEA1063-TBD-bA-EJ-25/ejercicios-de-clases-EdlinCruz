@@ -175,4 +175,11 @@ ORDER BY c.CategoryName, datepart( month, o.OrderDate ), TotalSales DESC;
 
 --USALA PARA CONSULTAR EL NOMBRE DE LAS TABLASS
 SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES;
-select * from Customers
+select * from [Order Details]
+
+--Ordenes que han sido menores a 500 dlls
+SELECT OrderID
+SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS importe
+from [Order Details]od
+having SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) < 500
+GROUP BY importe
