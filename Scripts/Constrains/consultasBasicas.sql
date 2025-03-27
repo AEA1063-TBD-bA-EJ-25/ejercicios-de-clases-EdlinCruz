@@ -178,8 +178,8 @@ SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES;
 select * from [Order Details]
 
 --Ordenes que han sido menores a 500 dlls
-SELECT OrderID
-SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS importe
-from [Order Details]od
-having SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) < 500
-GROUP BY importe
+Select orderid,
+        sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) as importe from [Order Details] od
+        group BY orderid
+          having  sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) < 500
+        order by importe
