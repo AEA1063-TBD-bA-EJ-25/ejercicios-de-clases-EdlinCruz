@@ -183,3 +183,29 @@ Select orderid,
         group BY orderid
           having  sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) < 500
         order by importe
+
+--clase de lunes 31 de marzo
+--conocer el precio maximo y el nombre del producto
+--en esta forma se declara la variable
+declare @maximo money
+select @maximo = max (UnitPrice) from products
+
+
+--consuta para conocer el nombre y el precio mas alto de un producto utilizando subconsultas
+select ProductName, UnitPrice FROM Products
+where UnitPrice = (select max(UnitPrice)from products)
+--lo que esta en parentesis es una subconsulta
+
+--mostrar los clientes que nos han comprado despues del 01/01/95 usando join
+select companyname
+from Customers
+JOIN orders 
+on orders.CustomerID = Customers.CustomerID
+where OrderDate > '1/1/1995'
+
+--mostrar usando exists y subconsultas
+select companyname, contactname
+from Customers C
+where exists (select * from orders o 
+            where c.CustomerID = o.CustomerID 
+            and OrderDate >'6/1/1998')
