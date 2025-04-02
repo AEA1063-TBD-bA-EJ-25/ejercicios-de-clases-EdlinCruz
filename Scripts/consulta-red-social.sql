@@ -22,3 +22,13 @@ select *
     --para conocer a quien le gusta alguien
     --dos grados menor
     where h1.grade - 2 >= h2.grade
+
+--mostrar la informacion de los estudiantes que se gustan mutuamente
+select h1.name, h1.grade, h2.name, h2.grade --selecciona solo nombres y grados
+from Likes l1 --de la tabla likes 1 (asi la llamamos)
+join likes l2 on l1.ID2 = l2.ID1 --
+join Highschooler h1 on h1.ID = l1.id1
+join Highschooler h2 on h2.id = l2.id2
+where l1.ID1 = l2.ID2
+    and l1.ID1 < l1.ID2
+
