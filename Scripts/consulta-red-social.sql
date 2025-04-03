@@ -21,7 +21,7 @@ select *
    --where h1.grade = h2.grade
     --para conocer a quien le gusta alguien
     --dos grados menor
-    where h1.grade - 2 >= h2.grade
+   where h1.grade - 2 >= h2.grade
 
 --mostrar la informacion de los estudiantes que se gustan mutuamente
 select h1.name, h1.grade, h2.name, h2.grade --selecciona solo nombres y grados
@@ -32,3 +32,14 @@ join Highschooler h2 on h2.id = l2.id2
 where l1.ID1 = l2.ID2
     and l1.ID1 < l1.ID2
 
+--for every situation where student A likes studen B, but student B likes a 
+--diferent student C, return the names and grades of A,B and C
+select h1.name, h1.grade, h2.name, h2.grade
+from likes l1
+join likes l2 on l1.ID2 = l2.ID2 
+join Highschooler h1 on h1.id = l1.ID1
+--falta agregarle nombres y gradoossss
+select h1.
+from likes L1 
+INNER join likes l2 on l1.id2 = l2.ID1
+where l1.id1 <> l2.id2
